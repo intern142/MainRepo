@@ -35,4 +35,4 @@ This is a simple web project created to practice Git and GitHub.
 
 ## Feature Branch
 
-This project is being updated using a feature branch workflow.
+This project is being updated using a feature branch workflow.g
