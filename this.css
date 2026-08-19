@@ -77,6 +77,87 @@ main {
 }
 
 
+/* Blog cards */
+
+.blog-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.blog-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.blog-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.blog-card h2 {
+    margin: 0 0 10px;
+    color: #007BFF;
+}
+
+.blog-card p {
+    line-height: 1.6;
+}
+
+.blog-card span {
+    color: #007BFF;
+    font-weight: bold;
+}
+
+
+/* Blog article page */
+
+.article {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.article img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.article h2 {
+    color: #007BFF;
+}
+
+.article p {
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+.article .meta {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+
 /* Contact form */
 
 .contact-form {
@@ -142,7 +223,19 @@ footer {
 
 /* Responsive design */
 
+@media (max-width: 800px) {
+
+    .blog-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
 @media (max-width: 500px) {
+
+    .blog-container {
+        grid-template-columns: 1fr;
+    }
 
     nav a {
         display: block;
