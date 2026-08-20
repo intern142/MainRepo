@@ -427,6 +427,58 @@ header p { margin-top: 10px; font-size: 16px; color: #666; }
 
 /* Blog area */
 
+/* Medium-like main grid + sidebar for editorial feed */
+.main-grid {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  padding: 0 22px;
+  align-items: start;
+}
+
+.article-list { display:flex; flex-direction:column; gap:32px; }
+
+.article-item { border-bottom: 1px solid var(--color-border); padding-bottom:24px; }
+
+.article-link { display:flex; gap:20px; align-items:flex-start; color:inherit; text-decoration:none; }
+
+.article-media { width: 320px; flex: 0 0 320px; aspect-ratio: 16/9; overflow:hidden; border-radius:8px; background: linear-gradient(180deg,#f3f5f7 0%, #e9eef3 100%); }
+.article-media img { width:100%; height:100%; object-fit:cover; display:block; transition: transform .5s ease; }
+
+.article-body { flex:1; }
+.article-body .meta-row { margin-bottom:8px; }
+.article-body h3 { margin:0 0 10px; font-size: 1.4rem; line-height:1.12; color:var(--color-text); }
+.article-body p.excerpt { margin:0; color:#475569; line-height:1.7; }
+
+.article-item:hover .article-media img { transform: scale(1.04); }
+
+/* Sidebar cards */
+.sidebar .card { background: var(--color-surface); padding:18px; border-radius:12px; box-shadow: var(--shadow-subtle); margin-bottom:18px; }
+.sidebar .card h4 { margin:0 0 8px; font-size:1rem; }
+.sidebar .card p { margin:0 0 12px; color:var(--color-muted); }
+.sidebar .card .nav-cta { display:inline-block; padding:8px 12px; }
+
+.popular-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+.popular-list a { color:var(--color-text); font-weight:600; text-decoration:none; }
+.popular-list a:hover { color:var(--color-accent); }
+
+/* Responsive: stack main and sidebar on narrower screens */
+@media (max-width: 1000px) {
+  .main-grid { grid-template-columns: 1fr; }
+  .article-link { flex-direction: column; }
+  .article-media { width:100%; flex-basis: auto; aspect-ratio: 16/9; }
+  .sidebar { order: 2; }
+  .article-item { padding-bottom:18px; }
+}
+
+@media (max-width: 560px) {
+  .article-body h3 { font-size: 1.125rem; }
+  .main-grid { gap: 20px; padding: 0 14px; }
+}
+
+
 .blog-section { margin-top: 26px; }
 .blog-section h2 { margin: 0 0 28px; text-align:center; font-size:34px; }
 
