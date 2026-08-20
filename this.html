@@ -23,12 +23,26 @@
 
     <main>
 
-        <section class="intro">
-            <h2>Welcome to My Blog</h2>
-            <p>
-                Welcome! Here I share thoughts, knowledge, experiences
-                and interesting ideas.
-            </p>
+        <section class="hero" id="home">
+            <div class="hero-inner">
+                <div class="hero-text">
+                    <h2>Stories that help you build, learn, and grow</h2>
+                    <p class="lead">Practical articles on coding, design, productivity and travel — ideas you can use today.</p>
+                    <div class="hero-ctas">
+                        <a class="cta cta-primary" href="#latest">Explore Articles</a>
+                        <a class="cta cta-secondary" href="contact.html">Subscribe</a>
+                    </div>
+                </div>
+                <div class="hero-media" aria-hidden="false">
+                    <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1200&q=80" alt="Person reading blog on a laptop"/>
+                </div>
+            </div>
+        </section>
+
+        <!-- Small intro preserved for accessibility and quick summary -->
+        <section class="intro" aria-hidden="true">
+            <h2 class="sr-only">Welcome</h2>
+            <p>Welcome! Here I share thoughts, knowledge, experiences and interesting ideas.</p>
         </section>
 
         <section class="blog-section">
