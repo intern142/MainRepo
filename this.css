@@ -352,19 +352,56 @@ header p { margin-top: 10px; font-size: 16px; color: #666; }
   100% { background-position: center 60%; }
 }
 
+/* Slow subtle zoom (Ken Burns style) */
+@keyframes heroZoom {
+  0% { background-size: 102%; }
+  50% { background-size: 106%; }
+  100% { background-size: 102%; }
+}
+
 /* Gentle float for primary hero CTA */
 @keyframes floatY { 0% { transform: translateY(0); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
 
-/* Apply the pan animation on larger viewports where it reads well */
+/* Title pop for stronger entrance */
+@keyframes titlePop { from { opacity: 0; transform: translateY(10px) scale(.995); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+/* Overlay fade-in */
+@keyframes overlayFade { from { opacity: 0; } to { opacity: 1; } }
+
+/* CTA shimmer — uses pseudo element */
+@keyframes shimmerX { from { transform: translateX(-110%); } to { transform: translateX(110%); } }
+
+/* Apply cinematic motion and transitions on larger viewports */
 @media (min-width: 521px) {
-  .hero-full { animation: heroPan 30s ease-in-out infinite; }
-  .hero-cta { animation: floatY 6s ease-in-out infinite; }
-  .hero-cta:hover, .hero-cta:focus { animation-play-state: paused; transform: translateY(-3px); }
+  /* combine pan and slow zoom for a gentle effect */
+  .hero-full { animation: heroPan 28s ease-in-out infinite, heroZoom 45s ease-in-out infinite; background-size: 104%; }
+
+  /* overlay fades in for layered feel */
+  .hero-full .hero-overlay { opacity: 0; animation: overlayFade 700ms var(--ease) forwards; animation-delay: 90ms; }
+
+  /* stronger title entrance */
+  .hero-title { opacity: 0; transform: translateY(6px) scale(.997); animation: titlePop 560ms var(--ease) forwards; animation-delay: 140ms; }
+
+  /* CTA floats and has a hover shimmer */
+  .hero-cta { animation: floatY 6s ease-in-out infinite; position: relative; overflow: hidden; }
+  .hero-cta::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -40%; bottom: 0;
+    width: 40%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.06) 100%);
+    transform: translateX(-110%);
+    filter: blur(10px);
+    transition: opacity .18s ease;
+    opacity: 0.0;
+  }
+  .hero-cta:hover::after, .hero-cta:focus::after { opacity: 1; animation: shimmerX 900ms linear; }
+  .hero-cta:hover, .hero-cta:focus { transform: translateY(-3px); }
 }
 
-/* Respect reduced motion */
+/* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  .hero-full, .hero-cta { animation: none !important; }
+  .hero-full, .hero-cta, .hero-title, .hero-full .hero-overlay { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
 }
 
 
