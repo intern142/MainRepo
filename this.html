@@ -84,7 +84,7 @@
             <div class="blog-grid">
                 <a class="card-link" href="posts/building-habits.html">
                 <article class="blog-card">
-                    <div class="blog-image-wrap"><img class="blog-image" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Laptop on desk"></div>
+                    <div class="blog-image-wrap"><img loading="lazy" class="blog-image" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Laptop on desk"></div>
                     <div class="blog-content">
                         <div class="meta-row"><span class="blog-meta">Technology</span><span class="blog-date">Aug 12, 2026</span></div>
                         <h3>Building Better Habits as a Developer</h3>
@@ -96,7 +96,7 @@
 
                 <a class="card-link" href="posts/team-communication.html">
                 <article class="blog-card">
-                    <div class="blog-image-wrap"><img class="blog-image" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="People collaborating"></div>
+                    <div class="blog-image-wrap"><img loading="lazy" class="blog-image" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="People collaborating"></div>
                     <div class="blog-content">
                         <div class="meta-row"><span class="blog-meta">Teamwork</span><span class="blog-date">Jul 30, 2026</span></div>
                         <h3>Why Great Teams Communicate Clearly</h3>
@@ -108,7 +108,7 @@
 
                 <a class="card-link" href="posts/finding-inspiration.html">
                 <article class="blog-card">
-                    <div class="blog-image-wrap"><img class="blog-image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Travel path in mountains"></div>
+                    <div class="blog-image-wrap"><img loading="lazy" class="blog-image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Travel path in mountains"></div>
                     <div class="blog-content">
                         <div class="meta-row"><span class="blog-meta">Travel</span><span class="blog-date">Jun 18, 2026</span></div>
                         <h3>Finding Inspiration Beyond Your Routine</h3>
@@ -120,7 +120,7 @@
 
                 <a class="card-link" href="posts/focused-work.html">
                 <article class="blog-card">
-                    <div class="blog-image-wrap"><img class="blog-image" src="https://images.unsplash.com/photo-1505685296765-3a2736de412f?auto=format&fit=crop&w=800&q=80" alt="Coffee and notebook"></div>
+                    <div class="blog-image-wrap"><img loading="lazy" class="blog-image" src="https://images.unsplash.com/photo-1505685296765-3a2736de412f?auto=format&fit=crop&w=800&q=80" alt="Coffee and notebook"></div>
                     <div class="blog-content">
                         <div class="meta-row"><span class="blog-meta">Productivity</span><span class="blog-date">May 02, 2026</span></div>
                         <h3>Practical Tips for Focused Work Sessions</h3>
@@ -132,7 +132,7 @@
 
                 <a class="card-link" href="posts/design-interfaces.html">
                 <article class="blog-card">
-                    <div class="blog-image-wrap"><img class="blog-image" src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=800&q=80" alt="City skyline at dusk"></div>
+                    <div class="blog-image-wrap"><img loading="lazy" class="blog-image" src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=800&q=80" alt="City skyline at dusk"></div>
                     <div class="blog-content">
                         <div class="meta-row"><span class="blog-meta">Design</span><span class="blog-date">Apr 11, 2026</span></div>
                         <h3>Designing Interfaces People Actually Enjoy Using</h3>
@@ -161,8 +161,12 @@
           if(!toggle || !links) return;
           toggle.addEventListener('click', function(){
             var expanded = toggle.getAttribute('aria-expanded') === 'true';
-            toggle.setAttribute('aria-expanded', String(!expanded));
+            // Toggle class first
             nav.classList.toggle('nav-open');
+            var open = nav.classList.contains('nav-open');
+            // reflect accessible state
+            toggle.setAttribute('aria-expanded', String(open));
+            links.setAttribute('aria-hidden', String(!open));
           });
         }
         document.addEventListener('DOMContentLoaded', function(){ initNavToggle(document); });

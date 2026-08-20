@@ -236,6 +236,19 @@ html, body { overflow-x: hidden; }
 
 main { max-width: 1200px; margin: auto; padding: 28px 20px; }
 
+/* Ensure toggle is hidden on larger screens */
+.nav-toggle { display: none; background: transparent; border: 0; }
+
+/* Standard button token */
+.btn, .hero-cta, .nav-cta, .featured-read, .cinematic-cta-btn, .read-more-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 14px; border-radius: 10px; font-weight: var(--fw-medium); text-decoration: none;
+}
+
+/* Header paragraph fix (override malformed rule earlier) */
+header p { margin-top: 10px; font-size: 16px; color: #666; }
+
+
 /* Hero - full width editorial hero */
 
 .hero-full {
