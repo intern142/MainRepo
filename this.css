@@ -1,14 +1,15 @@
 /* Design system / tokens (inspired by editorial simplicity) */
 
 :root{
-  /* Color palette */
-  --color-bg: #fafafa;            /* page background */
-  --color-surface: #ffffff;       /* cards, panels */
-  --color-text: #0f1724;          /* primary text */
-  --color-muted: #6b7280;         /* secondary text */
-  --color-accent: #0b66d0;        /* primary brand accent */
+  /* Semi-contrast monochrome color palette */
+  --color-bg: #eceff1;            /* slightly warm light gray page background */
+  --color-surface: #ffffff;       /* card / panel surface (white for clarity) */
+  --color-surface-soft: #f7f8f9;  /* gentle panel alternative for subtle contrast */
+  --color-text: #0f1724;          /* primary text (near-black) */
+  --color-muted: #556070;         /* secondary text (muted but readable) */
+  --color-accent: #0b66d0;        /* primary accent (kept for recognizability) */
   --color-accent-600: #095bb3;
-  --color-border: rgba(15,23,36,0.06);
+  --color-border: rgba(15,23,36,0.10); /* slightly stronger border for semi-contrast */
 
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -47,9 +48,9 @@
   --radius-sm: 8px;
   --radius: 12px;
   --radius-lg: 16px;
-  --shadow-subtle: 0 6px 20px rgba(13,38,73,0.06);
-  --shadow-medium: 0 12px 36px rgba(13,38,73,0.08);
-  --shadow-strong: 0 24px 60px rgba(12,34,80,0.12);
+  --shadow-subtle: 0 8px 28px rgba(12,20,30,0.06);
+  --shadow-medium: 0 16px 44px rgba(12,20,30,0.09);
+  --shadow-strong: 0 28px 72px rgba(12,20,30,0.12);
 
   /* Buttons */
   --btn-padding-y: 10px;
