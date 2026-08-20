@@ -83,7 +83,9 @@
           progress = Math.max(0, Math.min(1, progress));
           centerPct = 40 + (progress * 20);
         }
-        hero.style.backgroundPosition = 'center ' + centerPct + '%';
+        // Apply to slides (if present) for parallax effect
+        var slides = hero.querySelectorAll('.hero-slide');
+        slides.forEach(function(s){ s.style.backgroundPosition = 'center ' + centerPct + '%'; });
         ticking = false;
       });
     }
@@ -92,11 +94,50 @@
     onScroll();
   }
 
+  // Initialize a simple two-slide crossfade carousel for the hero
+  function initHeroSlides(){
+    if(prefersReduced) return; // skip animated carousel for reduced motion users
+    var slidesContainer = document.querySelector('.hero-slides');
+    if(!slidesContainer) return;
+    var slides = Array.prototype.slice.call(slidesContainer.querySelectorAll('.hero-slide'));
+    if(slides.length < 2) {
+      // Ensure at least the first slide is visible
+      if(slides[0]) slides[0].classList.add('is-active');
+      return;
+    }
+
+    var active = 0;
+    // show initial slide
+    slides.forEach(function(s,i){ s.classList.toggle('is-active', i === 0); s.setAttribute('aria-hidden', String(i !== 0)); });
+
+    var interval = 8000; // 8s per slide
+    var fadeDuration = 900; // matches CSS transition
+
+    function showNext(){
+      var next = (active + 1) % slides.length;
+      slides[active].classList.remove('is-active');
+      slides[active].setAttribute('aria-hidden', 'true');
+      slides[next].classList.add('is-active');
+      slides[next].setAttribute('aria-hidden', 'false');
+      active = next;
+    }
+
+    var timer = setInterval(showNext, interval);
+
+    // Pause on hover to let users explore CTA and text
+    var hero = document.querySelector('.hero-full');
+    if(hero){
+      hero.addEventListener('mouseenter', function(){ clearInterval(timer); });
+      hero.addEventListener('mouseleave', function(){ timer = setInterval(showNext, interval); });
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function(){
     initNavToggle(document);
     applyPageClasses();
     handleHeroEntrance();
     initScrollReveal();
     initHeroParallax();
+    initHeroSlides();
   });
 })();

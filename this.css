@@ -286,7 +286,7 @@ header p { margin-top: 10px; font-size: 16px; color: #666; }
 
 .hero-inner {
   position: relative; /* above overlay */
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
@@ -294,6 +294,20 @@ header p { margin-top: 10px; font-size: 16px; color: #666; }
   display: flex;
   align-items: center;
 }
+
+/* Slides container sits behind overlay and content */
+.hero-slides { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center center; background-repeat: no-repeat; opacity: 0; transition: opacity 900ms var(--ease), transform 1200ms var(--ease); transform: scale(1.02); }
+.hero-slide.is-active { opacity: 1; transform: scale(1); }
+
+/* Apply Ken Burns & pan animations to slides themselves on desktop */
+@media (min-width: 521px) {
+  .hero-slide { animation: heroPan 28s ease-in-out infinite, heroZoom 45s ease-in-out infinite; }
+}
+
+/* Ensure overlay and decor sit above slides */
+.hero-overlay { z-index: 1; }
+.hero-decor { z-index: 2; }
 
 .hero-content {
   max-width: 780px;
