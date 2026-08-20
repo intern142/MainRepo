@@ -424,14 +424,23 @@ header p { margin-top: 10px; font-size: 16px; color: #666; }
   }
 }
 
-/* Respect reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .hero-full, .hero-cta, .hero-title, .hero-full .hero-overlay { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
+/* Decorative hero image animation (desktop only) */
+@keyframes decorFloatRotate { 0% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } 100% { transform: translateY(0) rotate(-1deg); } }
+
+@media (min-width: 880px) {
+  .hero-decor {
+    position: absolute; right: 48px; bottom: 28px; width: 260px; height: auto; z-index: 2; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-medium); transform-origin: center; transition: transform 420ms var(--ease), opacity 320ms var(--ease);
+  }
+  .hero-decor img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* subtle floating/rotating animation */
+  .hero-decor { animation: decorFloatRotate 8s ease-in-out infinite; }
+  /* on hero hover, slightly accentuate decor */
+  .hero-full:hover .hero-decor { transform: translateY(-6px) rotate(1deg) scale(1.02); }
 }
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  .hero-full, .hero-cta, .hero-title, .hero-full .hero-overlay { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
+  .hero-full, .hero-cta, .hero-title, .hero-full .hero-overlay, .hero-decor { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
 }
 
 
