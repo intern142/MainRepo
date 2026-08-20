@@ -89,14 +89,17 @@ main {
 }
 
 .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 24px;
+    justify-content: center;
     align-items: stretch;
 }
 
 .blog-card {
-    width: 100%;
+    flex: 1 1 calc(33.333% - 24px);
+    max-width: 360px;
+    min-width: 240px;
     height: 100%;
     min-height: 420px;
     display: flex;
@@ -154,6 +157,35 @@ main {
     color: #007BFF;
 }
 
+
+/* Layout: responsive behavior for blog grid */
+
+@media (min-width: 900px) {
+    /* On large screens: aim for three cards in the first row and two in the second */
+    .blog-card {
+        flex: 1 1 calc(33.333% - 24px);
+    }
+}
+
+@media (max-width: 900px) and (min-width: 601px) {
+    /* Medium screens: two cards per row */
+    .blog-card {
+        flex: 1 1 calc(50% - 24px);
+        max-width: 520px;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Small screens: single column */
+    .blog-card {
+        flex: 1 1 100%;
+        max-width: none;
+    }
+
+    .blog-image {
+        height: 180px;
+    }
+}
 
 /* Contact form */
 
