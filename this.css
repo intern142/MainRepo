@@ -448,14 +448,23 @@ body.first-visit .hero-content { animation-delay: 120ms; }
 body.first-visit .featured-content { animation-delay: 220ms; }
 body.first-visit .cinematic-content { animation-delay: 320ms; }
 
-/* Staggered reveal for article list items — only on first visit */
-.article-item { opacity: 1; transform: none; }
+/* Staggered reveal for article list items — play on first visit and also support scroll reveal */
+.article-item { opacity: 1; transform: none; transition: opacity .62s var(--ease), transform .62s var(--ease); }
 body.first-visit .article-item { opacity: 0; transform: translateY(8px); }
 body.first-visit .article-list .article-item:nth-child(1) { animation: fadeUp var(--anim-medium) var(--ease) 160ms forwards; }
 body.first-visit .article-list .article-item:nth-child(2) { animation: fadeUp var(--anim-medium) var(--ease) 260ms forwards; }
 body.first-visit .article-list .article-item:nth-child(3) { animation: fadeUp var(--anim-medium) var(--ease) 360ms forwards; }
 body.first-visit .article-list .article-item:nth-child(4) { animation: fadeUp var(--anim-medium) var(--ease) 460ms forwards; }
 body.first-visit .article-list .article-item:nth-child(5) { animation: fadeUp var(--anim-medium) var(--ease) 560ms forwards; }
+
+/* Reveal-on-scroll helper: elements with .reveal-on-scroll get .in-view when visible */
+.reveal-on-scroll { opacity: 0; transform: translateY(8px); will-change: opacity, transform; }
+.reveal-on-scroll.in-view { opacity: 1; transform: none; }
+
+/* Keep transitions and animations disabled for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll, .article-item { transition: none !important; transform: none !important; opacity: 1 !important; }
+}
 
 /* Stronger hero title reveal (letter-spacing + pop) */
 @keyframes textReveal { from { opacity: 0; transform: translateY(10px) scale(.995); letter-spacing: 0.18em; } to { opacity: 1; transform: none; letter-spacing: normal; } }
