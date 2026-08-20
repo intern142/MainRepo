@@ -18,7 +18,8 @@
     <nav class="site-nav">
         <div class="nav-inner">
             <a class="brand" href="this.html"><span class="site-logo">My Blog</span></a>
-            <div class="nav-links">
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span class="hamburger"></span></button>
+            <div class="nav-links" id="nav-links">
                 <a href="this.html" aria-current="page">Home</a>
                 <a href="this.html#latest">Blogs</a>
                 <a href="about.html">About</a>
@@ -149,5 +150,23 @@
         <p>&copy; 2026 My Blog. All rights reserved.</p>
     </footer>
 
+    <script>
+      // Mobile nav toggle (shared simple script)
+      (function(){
+        function initNavToggle(root){
+          var nav = root.querySelector('.site-nav');
+          if(!nav) return;
+          var toggle = nav.querySelector('.nav-toggle');
+          var links = nav.querySelector('.nav-links');
+          if(!toggle || !links) return;
+          toggle.addEventListener('click', function(){
+            var expanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', String(!expanded));
+            nav.classList.toggle('nav-open');
+          });
+        }
+        document.addEventListener('DOMContentLoaded', function(){ initNavToggle(document); });
+      })();
+    </script>
 </body>
 </html>

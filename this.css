@@ -212,10 +212,25 @@ header h1 { margin: 0; font-size: 44px; font-weight:700; }nheader p { margin-to
 
 @media (max-width:560px) {
   .nav-links { gap:10px; }
-  /* stack nav links on very small screens for simplicity */
-  .nav-links { flex-direction:column; align-items:flex-end; }
-  .nav-links a, .nav-cta { width:100%; text-align:right; }
+  /* mobile: collapse nav into a toggleable panel */
+  .nav-toggle { display:inline-flex; background:transparent; border:0; padding:8px; align-items:center; justify-content:center; cursor:pointer; }
+  .nav-toggle .hamburger { width:20px; height:2px; background:var(--color-text); display:block; position:relative; }
+  .nav-toggle .hamburger::before, .nav-toggle .hamburger::after { content:''; position:absolute; left:0; right:0; height:2px; background:var(--color-text); }
+  .nav-toggle .hamburger::before { top:-6px; }
+  .nav-toggle .hamburger::after { top:6px; }
+
+  .nav-links { position: absolute; top: calc(100% + 8px); right: 14px; background: var(--color-surface); border-radius:10px; box-shadow: 0 12px 30px rgba(12,34,80,0.08); flex-direction:column; align-items:flex-start; padding:12px; gap:8px; max-height:0; overflow:hidden; width: min(92vw, 260px); transition: max-height 0.28s ease; }
+  .site-nav.nav-open .nav-links { max-height: 420px; }
+  .nav-links a, .nav-cta { width:100%; text-align:left; }
+  .nav-links a { padding:10px 12px; }
 }
+
+/* Prevent horizontal scrolling from overflowing elements */
+html, body { overflow-x: hidden; }
+
+/* Ensure main container padding is safe on very small screens */
+@media (max-width:420px) { main { padding-left:14px; padding-right:14px; } }
+
 
 /* Main content container */
 
