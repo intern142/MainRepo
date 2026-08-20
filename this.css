@@ -347,16 +347,23 @@ header p { margin-top: 10px; font-size: 16px; color: #666; }
 
 /* Hero background subtle pan (slow cinematic motion) */
 @keyframes heroPan {
-  0% { background-position: center 40%; }
+  0% { background-position: center 36%; }
   50% { background-position: center 50%; }
-  100% { background-position: center 60%; }
+  100% { background-position: center 64%; }
 }
 
-/* Slow subtle zoom (Ken Burns style) */
+/* Slow subtle zoom (Ken Burns style) - increased mid amplitude for richer effect */
 @keyframes heroZoom {
   0% { background-size: 102%; }
-  50% { background-size: 106%; }
+  50% { background-size: 110%; }
   100% { background-size: 102%; }
+}
+
+/* Subtle long shimmer for hero layer (desktop only) */
+@keyframes heroShimmer {
+  0% { transform: translateX(-30%); opacity: 0.06; }
+  50% { transform: translateX(30%); opacity: 0.12; }
+  100% { transform: translateX(-30%); opacity: 0.06; }
 }
 
 /* Gentle float for primary hero CTA */
@@ -380,7 +387,12 @@ header p { margin-top: 10px; font-size: 16px; color: #666; }
   .hero-full .hero-overlay { opacity: 0; animation: overlayFade 700ms var(--ease) forwards; animation-delay: 90ms; }
 
   /* stronger title entrance */
-  .hero-title { opacity: 0; transform: translateY(6px) scale(.997); animation: titlePop 560ms var(--ease) forwards; animation-delay: 140ms; }
+  .hero-title { opacity: 0; transform: translateY(6px) scale(.997); animation: titlePop 560ms var(--ease) forwards; animation-delay: 140ms; transition: transform 380ms var(--ease), opacity 320ms var(--ease); }
+  .hero-desc { transition: transform 420ms var(--ease), opacity 320ms var(--ease); }
+
+  /* hero hover subtle lift for desktop: accentuates title and description */
+  .hero-full:hover .hero-title { transform: translateY(0) scale(1.004); }
+  .hero-full:hover .hero-desc { transform: translateY(-4px); }
 
   /* CTA floats and has a hover shimmer */
   .hero-cta { animation: floatY 6s ease-in-out infinite; position: relative; overflow: hidden; }
@@ -397,6 +409,24 @@ header p { margin-top: 10px; font-size: 16px; color: #666; }
   }
   .hero-cta:hover::after, .hero-cta:focus::after { opacity: 1; animation: shimmerX 900ms linear; }
   .hero-cta:hover, .hero-cta:focus { transform: translateY(-3px); }
+
+  /* desktop-only subtle shimmer layer */
+  @media (min-width: 1024px) {
+    .hero-full::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1; pointer-events: none; border-radius: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 100%);
+      mix-blend-mode: overlay; opacity: 0.06; transform: translateX(-30%);
+      animation: heroShimmer 18s linear infinite;
+    }
+    /* ensure content sits above shimmer */
+    .hero-inner { z-index: 3; }
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero-full, .hero-cta, .hero-title, .hero-full .hero-overlay { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
 }
 
 /* Respect reduced motion preference */
