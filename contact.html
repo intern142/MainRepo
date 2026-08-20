@@ -31,7 +31,7 @@
         </section>
 
         <section class="contact-form">
-            <form action="#" method="post">
+            <form id="contact-form">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Your name" required>
 
@@ -43,6 +43,7 @@
 
                 <button type="submit">Send Message</button>
             </form>
+            <p id="form-status" class="form-status"></p>
         </section>
 
     </main>
@@ -50,6 +51,29 @@
     <footer>
         <p>&copy; 2026 My Blog. All rights reserved.</p>
     </footer>
+
+    <script>
+        const form = document.getElementById('contact-form');
+        const status = document.getElementById('form-status');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const entry = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value,
+                date: new Date().toLocaleString()
+            };
+
+            const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+            submissions.push(entry);
+            localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
+
+            form.reset();
+            status.textContent = 'Thanks, ' + entry.name + '! Your message has been saved locally.';
+        });
+    </script>
 
 </body>
 </html>
