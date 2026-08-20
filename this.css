@@ -1,30 +1,120 @@
-/* General page styling */
+/* Design system / tokens (inspired by editorial simplicity) */
 
 :root{
-  --color-text: #0f1724;
-  --color-muted: #6b7280;
-  --color-accent: #0b66d0;
+  /* Color palette */
+  --color-bg: #fafafa;            /* page background */
+  --color-surface: #ffffff;       /* cards, panels */
+  --color-text: #0f1724;          /* primary text */
+  --color-muted: #6b7280;         /* secondary text */
+  --color-accent: #0b66d0;        /* primary brand accent */
+  --color-accent-600: #095bb3;
+  --color-border: rgba(15,23,36,0.06);
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --fw-regular: 400;
+  --fw-medium: 600;
+  --fw-bold: 700;
+  --fw-heavy: 800;
+
+  /* Typographic scale (base sizes) */
+  --fs-xxs: 0.75rem; /* 12px */
+  --fs-xs: 0.875rem; /* 14px */
+  --fs-sm: 1rem;     /* 16px */
+  --fs-md: 1.125rem; /* 18px */
+  --fs-lg: 1.25rem;  /* 20px */
+  --fs-xl: 1.5rem;   /* 24px */
+  --fs-hero: clamp(1.8rem, 3.2vw + 1.1rem, 3.6rem); /* responsive hero */
+  --fs-article-title: clamp(1.4rem, 2.2vw + 1.1rem, 2.6rem);
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 56px;
+
+  /* Layout */
+  --container-max: 1200px;
+  --measure: 65ch; /* comfortable line-length for article copy */
+
+  /* Radii & shadows */
+  --radius-sm: 8px;
   --radius: 12px;
-  --page-max: 1200px;
-  --measure: 65ch; /* comfortable line length for articles */
+  --radius-lg: 16px;
+  --shadow-subtle: 0 6px 20px rgba(13,38,73,0.06);
+  --shadow-medium: 0 12px 36px rgba(13,38,73,0.08);
+  --shadow-strong: 0 24px 60px rgba(12,34,80,0.12);
+
+  /* Buttons */
+  --btn-padding-y: 10px;
+  --btn-padding-x: 16px;
+
+  /* Breakpoints */
+  --bp-xs: 480px;
+  --bp-sm: 700px;
+  --bp-md: 880px;
+  --bp-lg: 1100px;
+  --bp-xl: 1400px;
 }
 
+/* Base resets */
 * { box-sizing: border-box; }
 
-html { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+html { font-family: var(--font-sans); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 
 body {
-    font-size: 16px;
-    background-color: #fafafa;
+    font-size: var(--fs-sm);
+    background-color: var(--color-bg);
     margin: 0;
     color: var(--color-text);
     line-height: 1.65; /* comfortable for body text */
 }
 
-/* Responsive typographic scale */
-:root { --fs-hero: clamp(1.6rem, 2.6vw + 1.2rem, 3.4rem); --fs-article-title: clamp(1.5rem, 2.2vw + 1.1rem, 2.6rem); --fs-section: clamp(1.25rem, 1.6vw + 0.9rem, 1.8rem); --fs-h3: clamp(1.05rem, 1.2vw + 0.9rem, 1.25rem); }
+/* Links default */
+a { color: inherit; text-decoration: none; }
 
-a { color: inherit; }
+/* Utility text classes */
+.lead { color: var(--color-muted); font-size: var(--fs-md); }
+.small { font-size: var(--fs-xs); color: var(--color-muted); }
+
+/* Headings hierarchy */
+h1, .site-title { font-weight: var(--fw-heavy); letter-spacing: -0.02em; }
+h2, .article-title { font-weight: var(--fw-bold); }
+h3, .card-title { font-weight: var(--fw-bold); }
+
+/* Default heading sizes (can be overridden in context) */
+h1 { font-size: clamp(1.6rem, 3vw + 0.8rem, 3rem); margin: 0 0 var(--space-2); }
+h2 { font-size: var(--fs-xl); margin: 0 0 var(--space-3); }
+h3 { font-size: var(--fs-lg); margin: 0 0 var(--space-2); }
+
+/* Buttons baseline */
+button, .cta, .read-more-btn { font-weight: var(--fw-medium); font-size: var(--fs-sm); border-radius: calc(var(--radius) - 2px); }
+
+/* Metadata */
+.blog-meta, .blog-date, .post .post-meta { font-size: var(--fs-xs); color: var(--color-muted); letter-spacing: 0.04em; }
+
+/* Article measure */
+.post section { max-width: var(--measure); }
+
+/* Focus states - clear and accessible */
+:focus { outline: none; }
+:focus-visible { box-shadow: 0 0 0 4px rgba(11,102,208,0.12); border-radius: 6px; }
+
+/* Image defaults - editorial treatment */
+img { max-width: 100%; height: auto; display: block; }
+.media-rounded { border-radius: var(--radius); overflow: hidden; }
+
+/* Responsive helpers */
+@media (max-width: 720px) {
+  :root { --measure: 58ch; }
+}
+
+/* End design system tokens */
+
 
 /* Utility text classes */
 .lead { color: var(--color-muted); font-size: 1.05rem; }
