@@ -1,18 +1,86 @@
 /* General page styling */
 
-* { box-sizing: border-box; }
-
-body {
-    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-color: #fafafa;
-    margin: 0;
-    color: #222;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height: 1.6;
+:root{
+  --color-text: #0f1724;
+  --color-muted: #6b7280;
+  --color-accent: #0b66d0;
+  --radius: 12px;
+  --page-max: 1200px;
+  --measure: 65ch; /* comfortable line length for articles */
 }
 
+* { box-sizing: border-box; }
+
+html { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+body {
+    font-size: 16px;
+    background-color: #fafafa;
+    margin: 0;
+    color: var(--color-text);
+    line-height: 1.65; /* comfortable for body text */
+}
+
+/* Responsive typographic scale */
+:root { --fs-hero: clamp(1.6rem, 2.6vw + 1.2rem, 3.4rem); --fs-article-title: clamp(1.5rem, 2.2vw + 1.1rem, 2.6rem); --fs-section: clamp(1.25rem, 1.6vw + 0.9rem, 1.8rem); --fs-h3: clamp(1.05rem, 1.2vw + 0.9rem, 1.25rem); }
+
 a { color: inherit; }
+
+/* Utility text classes */
+.lead { color: var(--color-muted); font-size: 1.05rem; }
+.small { font-size: 0.9rem; color: var(--color-muted); }
+
+/* Ensure headings use strong weights for hierarchy */
+h1, .site-title { font-weight: 800; letter-spacing: -0.02em; }
+h2, .article-title { font-weight: 700; }
+h3, .card-title { font-weight: 700; }
+
+/* Navigation text */
+nav a { font-size: 0.98rem; letter-spacing: 0.01em; }
+
+/* Buttons */
+button, .cta, .read-more-btn { font-weight: 700; font-size: 0.95rem; }
+
+/* Metadata */
+.blog-meta, .blog-date, .post .post-meta { font-size: 0.85rem; color: var(--color-muted); letter-spacing: 0.04em; }
+
+/* Make headings and text responsive and spaced */
+h1 { font-size: clamp(1.6rem, 3vw + 0.8rem, 3.2rem); margin: 0 0 8px; }
+
+/* Hero heading (used in .hero-text h2) */
+.hero-text h2 { font-size: var(--fs-hero); margin: 0 0 12px; line-height: 1.06; }
+
+/* Section headings (Latest Articles, etc.) */
+.blog-section h2, .intro h2 { font-size: var(--fs-section); margin-bottom: 12px; }
+
+/* Blog card title */
+.blog-card h3 { font-size: var(--fs-h3); margin: 8px 0 8px; }
+
+/* Article titles */
+.post h2 { font-size: var(--fs-article-title); margin-bottom: 8px; }
+
+/* Subheadings inside articles */
+.post h3, .post h4 { font-weight: 700; margin-top: 1.4rem; }
+
+/* Body text comfortable measure */
+.post section { max-width: var(--measure); }
+
+/* Links and buttons visual clarity */
+.read-more-btn, .cta { border-radius: 10px; }
+
+/* Slightly increase spacing between blocks for readability */
+.blog-content p, .post section p { margin: 0 0 1.1rem; }
+
+/* Ensure readable list spacing */
+.post section ul, .post section ol { margin: 0 0 1.1rem 1.1rem; }
+
+/* Small screens adjustments */
+@media (max-width: 720px) {
+  :root { --measure: 58ch; }
+  .hero-text h2 { font-size: clamp(1.4rem, 4.2vw + 0.8rem, 2.2rem); }
+  .post section { padding: 0 0; }
+}
+
 
 /* Header */
 
