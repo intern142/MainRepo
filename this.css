@@ -257,8 +257,8 @@ header p { margin-top: 10px; font-size: 16px; color: #666; }
   background-position: center center;
   background-repeat: no-repeat;
   position: relative;
-  /* Responsive height: large on desktop, shorter on mobile */
-  height: clamp(48vh, 60vh, 760px);
+  /* Powerful editorial height: min 420px, fluid (~56vh), max 860px */
+  height: clamp(420px, 56vh, 860px);
   display: flex;
   align-items: center;
   margin-bottom: var(--space-6);
@@ -267,8 +267,20 @@ header p { margin-top: 10px; font-size: 16px; color: #666; }
 .hero-full .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(6,12,21,0.36) 10%, rgba(6,12,21,0.22) 35%, rgba(6,12,21,0.12) 65%, rgba(6,12,21,0.06) 100%);
+  /* Slightly stronger vignette near top for headline contrast */
+  background: linear-gradient(180deg, rgba(6,12,21,0.48) 6%, rgba(6,12,21,0.3) 30%, rgba(6,12,21,0.14) 65%, rgba(6,12,21,0.06) 100%);
   pointer-events: none;
+}
+
+/* Better focal handling on narrow screens - keep subject visible */
+@media (max-width: 880px) {
+  .hero-full { background-position: center top; height: clamp(360px, 48vh, 560px); }
+  .hero-full .hero-overlay { background: linear-gradient(180deg, rgba(6,12,21,0.56) 6%, rgba(6,12,21,0.36) 30%, rgba(6,12,21,0.18) 65%, rgba(6,12,21,0.08) 100%); }
+}
+
+@media (max-width: 520px) {
+  .hero-full { background-position: center top; height: clamp(300px, 44vh, 420px); }
+  .hero-full .hero-overlay { background: linear-gradient(180deg, rgba(6,12,21,0.62) 6%, rgba(6,12,21,0.4) 30%, rgba(6,12,21,0.2) 65%, rgba(6,12,21,0.1) 100%); }
 }
 
 .hero-inner {
