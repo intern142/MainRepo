@@ -175,27 +175,6 @@
         <p>&copy; 2026 My Blog. All rights reserved.</p>
     </footer>
 
-    <script>
-      // Mobile nav toggle (shared simple script)
-      (function(){
-        function initNavToggle(root){
-          var nav = root.querySelector('.site-nav');
-          if(!nav) return;
-          var toggle = nav.querySelector('.nav-toggle');
-          var links = nav.querySelector('.nav-links');
-          if(!toggle || !links) return;
-          toggle.addEventListener('click', function(){
-            var expanded = toggle.getAttribute('aria-expanded') === 'true';
-            // Toggle class first
-            nav.classList.toggle('nav-open');
-            var open = nav.classList.contains('nav-open');
-            // reflect accessible state
-            toggle.setAttribute('aria-expanded', String(open));
-            links.setAttribute('aria-hidden', String(!open));
-          });
-        }
-        document.addEventListener('DOMContentLoaded', function(){ initNavToggle(document); });
-      })();
-    </script>
+    <script src="assets/hero-init.js" defer></script>
 </body>
 </html>

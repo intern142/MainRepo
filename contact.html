@@ -59,19 +59,7 @@
         <p>&copy; 2026 My Blog. All rights reserved.</p>
     </footer>
 
-    <script>
-      (function(){
-        var nav = document.querySelector('.site-nav');
-        if(!nav) return;
-        var toggle = nav.querySelector('.nav-toggle');
-        if(!toggle) return;
-        toggle.addEventListener('click', function(){
-          nav.classList.toggle('nav-open');
-          var expanded = toggle.getAttribute('aria-expanded') === 'true';
-          toggle.setAttribute('aria-expanded', String(!expanded));
-        });
-      })();
-    </script>
+    <script src="assets/hero-init.js" defer></script>
 
 </body>
 </html>
